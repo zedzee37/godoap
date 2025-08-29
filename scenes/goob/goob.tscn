@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bh7fciwe6yvnm"]
+[gd_scene load_steps=8 format=3 uid="uid://bh7fciwe6yvnm"]
 
 [ext_resource type="Script" uid="uid://ws44omw0103n" path="res://scripts/goob/Goob.cs" id="1_50xyd"]
 [ext_resource type="PackedScene" uid="uid://dl4wpenhthp73" path="res://scenes/goob/goober_sprite.tscn" id="1_cvhr4"]
@@ -12,9 +12,78 @@ shader_parameter/temp_shadow_color = Color(0.760784, 0.764706, 0.780392, 1)
 shader_parameter/main_color = Color(1, 1, 1, 1)
 shader_parameter/shadow_color = Color(0.760784, 0.764706, 0.780392, 1)
 
+[sub_resource type="Animation" id="Animation_50xyd"]
+resource_name = "move"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GooberSprite:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.174533, 0.174533]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GooberSprite:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.995, 1.1), Vector2(1, 1), Vector2(0.995, 1.1)]
+}
+
+[sub_resource type="Animation" id="Animation_ulr6f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GooberSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GooberSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ulr6f"]
+_data = {
+&"RESET": SubResource("Animation_ulr6f"),
+&"move": SubResource("Animation_50xyd")
+}
+
 [node name="Goob" type="Node2D"]
 script = ExtResource("1_50xyd")
+speed = 100.0
+distanceThreshold = 10.0
 
 [node name="GooberSprite" parent="." instance=ExtResource("1_cvhr4")]
 material = SubResource("ShaderMaterial_ulr6f")
-scale = Vector2(3, 3)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ulr6f")
+}

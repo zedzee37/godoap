@@ -1,8 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://cinjillpg0a3r"]
+[gd_scene load_steps=3 format=3 uid="uid://cinjillpg0a3r"]
 
 [ext_resource type="PackedScene" uid="uid://bh7fciwe6yvnm" path="res://scenes/goob/goob.tscn" id="1_o5qli"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_o5qli"]
+vertices = PackedVector2Array(632.883, 350.039, 11.9062, 352.953, 9.07812, 11, 629.109, 11)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(639, 1, -1, 1, 2, 363, 643, 360)])
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Goob" parent="." instance=ExtResource("1_o5qli")]
 position = Vector2(298, 203)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_o5qli")
