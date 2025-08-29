@@ -10,8 +10,8 @@ resource_local_to_scene = true
 shader = ExtResource("1_2bl5x")
 shader_parameter/temp_main_color = Color(1, 1, 1, 1)
 shader_parameter/temp_shadow_color = Color(0.760784, 0.764706, 0.780392, 1)
-shader_parameter/main_color = Color(0.399791, 0.0972733, 0.127355, 1)
-shader_parameter/shadow_color = Color(0.948178, 0.62747, 0.993462, 1)
+shader_parameter/main_color = Color(1, 1, 1, 1)
+shader_parameter/shadow_color = Color(0.760784, 0.764706, 0.780392, 1)
 
 [sub_resource type="Resource" id="Resource_u3bj5"]
 script = ExtResource("4_g4pn0")
