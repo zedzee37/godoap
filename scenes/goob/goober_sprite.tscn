@@ -1,0 +1,51 @@
+[gd_scene load_steps=11 format=3 uid="uid://dl4wpenhthp73"]
+
+[ext_resource type="Shader" uid="uid://bcrvjvaxli2mw" path="res://scenes/goob/goober_sprite.gdshader" id="1_2bl5x"]
+[ext_resource type="Texture2D" uid="uid://yhkj7ygigd1p" path="res://sprites/goob.png" id="2_o6n51"]
+[ext_resource type="Script" uid="uid://bsfcfsmkw2q5r" path="res://scripts/goob/GoobSprite.cs" id="3_o6n51"]
+[ext_resource type="Script" uid="uid://bxx81d483r5tb" path="res://scripts/goob/ColorPair.cs" id="4_g4pn0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g4pn0"]
+resource_local_to_scene = true
+shader = ExtResource("1_2bl5x")
+shader_parameter/temp_main_color = Color(1, 1, 1, 1)
+shader_parameter/temp_shadow_color = Color(0.760784, 0.764706, 0.780392, 1)
+shader_parameter/main_color = Color(0.399791, 0.0972733, 0.127355, 1)
+shader_parameter/shadow_color = Color(0.948178, 0.62747, 0.993462, 1)
+
+[sub_resource type="Resource" id="Resource_u3bj5"]
+script = ExtResource("4_g4pn0")
+mainColor = Color(1, 0.945098, 0.909804, 1)
+shadowColor = Color(0.760784, 0.764706, 0.780392, 1)
+metadata/_custom_type_script = "uid://bxx81d483r5tb"
+
+[sub_resource type="Resource" id="Resource_g4pn0"]
+script = ExtResource("4_g4pn0")
+mainColor = Color(1, 0, 0.301961, 1)
+shadowColor = Color(0.494118, 0.145098, 0.32549, 1)
+metadata/_custom_type_script = "uid://bxx81d483r5tb"
+
+[sub_resource type="Resource" id="Resource_mffn4"]
+script = ExtResource("4_g4pn0")
+mainColor = Color(0, 0.894118, 0.211765, 1)
+shadowColor = Color(0, 0.529412, 0.317647, 1)
+metadata/_custom_type_script = "uid://bxx81d483r5tb"
+
+[sub_resource type="Resource" id="Resource_3ts36"]
+script = ExtResource("4_g4pn0")
+mainColor = Color(1, 0.92549, 0.152941, 1)
+shadowColor = Color(1, 0.639216, 0, 1)
+metadata/_custom_type_script = "uid://bxx81d483r5tb"
+
+[sub_resource type="Resource" id="Resource_3xafp"]
+script = ExtResource("4_g4pn0")
+mainColor = Color(0.160784, 0.678431, 1, 1)
+shadowColor = Color(0.113725, 0.168627, 0.32549, 1)
+metadata/_custom_type_script = "uid://bxx81d483r5tb"
+
+[node name="GooberSprite" type="Sprite2D"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_g4pn0")
+texture = ExtResource("2_o6n51")
+script = ExtResource("3_o6n51")
+colors = Array[ExtResource("4_g4pn0")]([SubResource("Resource_u3bj5"), SubResource("Resource_g4pn0"), SubResource("Resource_mffn4"), SubResource("Resource_3ts36"), SubResource("Resource_3xafp")])
