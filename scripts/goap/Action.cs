@@ -9,6 +9,12 @@ public abstract class Action<T>
 		DesiredOutcome = desiredOutcome;
 	}
 
+	public bool IsAvailable(WorldState state)
+	{
+		return state.Matches(this.PreConditions);
+	}
+
 	public abstract void Run(WorldState state, double delta, T self);
 	public abstract bool IsActionComplete(WorldState state, double delta, T self);
+	public abstract float Cost(WorldState state, T self);
 }

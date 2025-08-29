@@ -34,14 +34,13 @@ public class Planner<T>
 		return goal;
 	}
 
-	private ActionNode<T> PlanActions(WorldState state)
+	private ActionNode<T> PlanActions(WorldState state, T self)
 	{
 		ActionNode<T> head = new ActionNode<T>(state);
-		BuildActionTree(head);
 		return head;
 	}
 
-	private void BuildActionTree(ActionNode<T> parent)
+	private void BuildActionTree(ActionNode<T> parent, T self)
 	{
 		List<Action<T>> availableActions = GetActionsForState(parent.state);	
 		availableActions.ForEach(action => {
@@ -57,7 +56,7 @@ public class Planner<T>
 				parent.AddChild(node);
 				if (!currentGoal.GoalComplete(outcome))
 				{
-					BuildActionTree(node);
+					BuildActionTree(node, self);
 				}
 		});
 	}
