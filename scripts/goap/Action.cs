@@ -1,20 +1,20 @@
-public abstract class Action<T>
+public abstract class Action<W, T> where W : struct, IWorldState<W>
 {
-	public WorldState PreConditions { get; set; }
-	public WorldState DesiredOutcome { get; set; }
+	public W PreConditions { get; set; }
+	public W DesiredOutcome { get; set; }
 
-	public Action(WorldState preConditions, WorldState desiredOutcome)
+	public Action(W preConditions, W desiredOutcome)
 	{
 		PreConditions = preConditions;
 		DesiredOutcome = desiredOutcome;
 	}
 
-	public bool IsAvailable(WorldState state)
+	public bool IsAvailable(W state)
 	{
 		return state.Matches(this.PreConditions);
 	}
 
-	public abstract void Run(WorldState state, double delta, T self);
-	public abstract bool IsActionComplete(WorldState state, double delta, T self);
-	public abstract float Cost(WorldState state, T self);
+	public abstract void Run(W state, double delta, T self);
+	public abstract bool IsActionComplete(W state);
+	public abstract float Cost(W state);
 }

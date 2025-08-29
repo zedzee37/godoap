@@ -2,27 +2,27 @@ using System.Collections.Generic;
 using System.Linq;
 
 #nullable enable
-public class Planner<T>
+public class Planner<W, T> where W : struct, IWorldState<W>
 {
-	private List<Action<T>> actions;
-	private List<Goal<T>> goals;
-	private Goal<T>? currentGoal;
+	private List<Action<W, T>> actions;
+	private List<Goal<W>> goals;
+	private Goal<W>? currentGoal;
 
-	private Planner(List<Action<T>> actions, List<Goal<T>> goals) 
+	private Planner(List<Action<W, T>> actions, List<Goal<W>> goals) 
 	{
 		this.actions = actions;
 		this.goals = goals;
 		currentGoal = null;
 	}
 
-	private Goal<T>? GetHighestPriorityGoal(WorldState state, T self)
+	private Goal<W>? GetHighestPriorityGoal(W state)
 	{
-		Goal<T>? goal = currentGoal;
-		float currentPriority = currentGoal != null ? currentGoal.GetPriority(state, self) : 0.0F;
+		Goal<W>? goal = currentGoal;
+		float currentPriority = currentGoal != null ? currentGoal.GetPriority(state) : 0.0F;
 
 		this.goals.ForEach(newGoal =>
 				{
-					float priority = newGoal.GetPriority(state, self);
+					float priority = newGoal.GetPriority(state);
 					if (priority > currentPriority)
 					{
 						goal = newGoal;
@@ -34,25 +34,25 @@ public class Planner<T>
 		return goal;
 	}
 
-	private ActionNode<T> PlanActions(WorldState state)
+	private ActionNode<W, T> PlanActions(W state)
 	{
-		ActionNode<T> head = new ActionNode<T>(state);
+		ActionNode<W, T> head = new ActionNode<W, T>(state);
 		BuildActionTree(head);
 		return head;
 	}
 
-	private void BuildActionTree(ActionNode<T> parent)
+	private void BuildActionTree(ActionNode<W, T> parent)
 	{
-		List<Action<T>> availableActions = GetActionsForState(parent.state);	
+		List<Action<W, T>> availableActions = GetActionsForState(parent.state);	
 		availableActions.ForEach(action => {
-				WorldState outcome = action.DesiredOutcome;
+				W outcome = action.DesiredOutcome;
 				
 				if (currentGoal == null)
 				{
 					return;
 				}
 
-				ActionNode<T> node = new ActionNode<T>(action, outcome);
+				ActionNode<W, T> node = new ActionNode<W, T>(action, outcome);
 
 				parent.AddChild(node);
 				if (!currentGoal.GoalComplete(outcome))
@@ -62,7 +62,7 @@ public class Planner<T>
 		});
 	}
 
-	private List<Action<T>> GetActionsForState(WorldState state)
+	private List<Action<W, T>> GetActionsForState(W state)
 	{
 		return (from action in actions
 				where action.IsAvailable(state)
@@ -71,30 +71,30 @@ public class Planner<T>
 
 	public class Builder 
 	{
-		private List<Action<T>> actions;
-		private List<Goal<T>> goals;
+		private List<Action<W, T>> actions;
+		private List<Goal<W>> goals;
 
 		public Builder() 
 		{
-			actions = new List<Action<T>>();
-			goals = new List<Goal<T>>();
+			actions = new List<Action<W, T>>();
+			goals = new List<Goal<W>>();
 		}
 
-		public Builder Action(Action<T> action)
+		public Builder Action(Action<W, T> action)
 		{
 			this.actions.Add(action);
 			return this;
 		}
 
-		public Builder Goal(Goal<T> goal)
+		public Builder Goal(Goal<W> goal)
 		{
 			this.goals.Add(goal);
 			return this;
 		}
 
-		public Planner<T> Build()
+		public Planner<W, T> Build()
 		{
-			return new Planner<T>(this.actions, this.goals);
+			return new Planner<W, T>(this.actions, this.goals);
 		}
 	}
 }

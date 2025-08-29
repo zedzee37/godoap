@@ -1,16 +1,7 @@
 using Godot;
 
-public partial class Goob : Node2D
+public partial class Goob : Node2D, IStateProvider<GoobState>
 {
-	private static Goal<Goob> testGoal = new Goal<Goob>(
-				new WorldState.Builder()
-					.Build(),
-				0.2f
-			);
-	private Planner<Goob> planner = new Planner<Goob>.Builder()
-		.Goal(testGoal)
-		.Build();
-
 	[Export] private float speed;
 	[Export] private float distanceThreshold = 2.0f;
 
@@ -42,4 +33,10 @@ public partial class Goob : Node2D
 			animPlayer.Stop();
 		}
 	}
+
+	public GoobState GetState()
+	{
+		return new GoobState();
+	}
+
 }

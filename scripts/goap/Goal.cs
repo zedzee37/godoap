@@ -1,22 +1,22 @@
 using Godot;
 
-public partial class Goal<T> : Node 
+public partial class Goal<W> : Node where W : struct, IWorldState<W>
 {
-	public WorldState desiredState;
+	public W desiredState;
 	private float basePriority;
 
-	public Goal(WorldState desiredState, float basePriority) 
+	public Goal(W desiredState, float basePriority) 
 	{
 		this.desiredState = desiredState; 
 		this.basePriority = basePriority;
 	}
 
-	public virtual float GetPriority(WorldState state, T self)
+	public virtual float GetPriority(W state)
 	{
 		return basePriority;		
 	}
 	
-	public bool GoalComplete(WorldState newState)
+	public bool GoalComplete(W newState)
 	{
 		return newState.Matches(desiredState);
 	}

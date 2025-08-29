@@ -1,8 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://dy2eo3di50cwb"]
+[gd_scene load_steps=3 format=3 uid="uid://dy2eo3di50cwb"]
 
 [ext_resource type="Texture2D" uid="uid://cyvy3yib4mrpu" path="res://sprites/tree.png" id="1_avsvi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_avsvi"]
 
 [node name="Tree" type="Node2D"]
 
 [node name="Tree" type="Sprite2D" parent="."]
 texture = ExtResource("1_avsvi")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_avsvi")

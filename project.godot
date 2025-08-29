@@ -33,3 +33,11 @@ folder_colors={
 "res://scripts/": "green",
 "res://sprites/": "purple"
 }
+
+[layer_names]
+
+2d_physics/layer_1="interaction"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
