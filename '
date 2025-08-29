@@ -1,0 +1,12 @@
+using Godot;
+
+public partial class Goal : Node
+{
+	public float Priority { get; set; }	
+	public WorldState desiredState;
+
+	public Goal(WorldState desiredState) 
+	{
+		this.desiredState = desiredState; 
+	}
+}
