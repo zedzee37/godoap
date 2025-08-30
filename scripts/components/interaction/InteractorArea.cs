@@ -11,6 +11,16 @@ public partial class InteractorArea : Area2D
         AreaEntered += InteractionAreaEntered;
     }
 
+	public object? GetTarget()
+	{
+		if (currentArea == null)
+		{
+			return null;
+		}
+
+		return currentArea.GetTarget();
+	}
+
     public InteractionResult? Interact()
     {
         if (currentArea == null)

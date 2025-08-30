@@ -1,16 +1,29 @@
 using Godot;
 
+#nullable enable
 [GlobalClass]
 public partial class InteractionArea : Area2D
 {
-	[Export]
-	public InteractionType type;
-
     public delegate InteractionResult InteractedEventHandler();
-	private InteractedEventHandler handler;
+	private InteractedEventHandler? handler;
 
-    public InteractionResult Interact()
+	public object? GetTarget()
+	{
+		if (handler == null)
+		{
+			return null;
+		}
+
+		return handler.Target;
+	}
+
+    public InteractionResult? Interact()
     {
+		if (handler == null)
+		{
+			return null;
+		}
+
 		return handler.Invoke();
     }
 
