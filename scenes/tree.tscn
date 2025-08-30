@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dy2eo3di50cwb"]
+[gd_scene load_steps=5 format=3 uid="uid://dy2eo3di50cwb"]
 
 [ext_resource type="Texture2D" uid="uid://cyvy3yib4mrpu" path="res://sprites/tree.png" id="1_avsvi"]
-[ext_resource type="Script" uid="uid://dk7vvplod0ahn" path="res://scripts/components/InteractionArea.cs" id="2_vplca"]
+[ext_resource type="Script" uid="uid://dh8k3tpuenmxw" path="res://scripts/world/Tree.cs" id="1_viusy"]
+[ext_resource type="Script" uid="uid://dk7vvplod0ahn" path="res://scripts/components/interaction/InteractionArea.cs" id="2_vplca"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_avsvi"]
 
 [node name="Tree" type="Node2D"]
+script = ExtResource("1_viusy")
 
 [node name="Tree" type="Sprite2D" parent="."]
 texture = ExtResource("1_avsvi")

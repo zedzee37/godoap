@@ -1,0 +1,4 @@
+public enum InteractionType
+{
+	Tree
+}

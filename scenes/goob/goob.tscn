@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bh7fciwe6yvnm"]
+[gd_scene load_steps=10 format=3 uid="uid://bh7fciwe6yvnm"]
 
 [ext_resource type="Script" uid="uid://ws44omw0103n" path="res://scripts/goob/Goob.cs" id="1_50xyd"]
 [ext_resource type="PackedScene" uid="uid://dl4wpenhthp73" path="res://scenes/goob/goober_sprite.tscn" id="1_cvhr4"]
 [ext_resource type="Shader" uid="uid://bcrvjvaxli2mw" path="res://scenes/goob/goober_sprite.gdshader" id="2_50xyd"]
+[ext_resource type="Script" uid="uid://c52bkm2vbuaqe" path="res://scripts/components/interaction/InteractorArea.cs" id="4_ulr6f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ulr6f"]
 resource_local_to_scene = true
@@ -93,6 +94,7 @@ libraries = {
 
 [node name="InteractorArea" type="Area2D" parent="."]
 collision_layer = 0
+script = ExtResource("4_ulr6f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractorArea"]
 position = Vector2(0, 0.5)

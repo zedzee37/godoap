@@ -11,14 +11,14 @@ public partial class InteractorArea : Area2D
         AreaEntered += InteractionAreaEntered;
     }
 
-    public void Interact()
+    public InteractionResult? Interact()
     {
         if (currentArea == null)
         {
-            return;
+            return null;
         }
 
-        currentArea.Interact();
+        return currentArea.Interact();
     }
 
     private void InteractionAreaEntered(Area2D area)

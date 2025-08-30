@@ -6,13 +6,13 @@ public partial class InteractionArea : Area2D
 	[Export]
 	public InteractionType type;
 
-	public delegate InteractionResult InteractedEventHandler();
+    public delegate InteractionResult InteractedEventHandler();
 	private InteractedEventHandler handler;
 
-	public InteractionResult Interact()
-	{
+    public InteractionResult Interact()
+    {
 		return handler.Invoke();
-	}
+    }
 
 	public void SetCallback(InteractedEventHandler handler)
 	{
