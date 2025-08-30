@@ -8,12 +8,14 @@ public partial class Goob : Node2D, IStateProvider<GoobState>
 	private NavigationAgent2D navAgent;
 	private Sprite2D sprite;
 	private AnimationPlayer animPlayer;
+	private InteractorArea interactorArea;
 
 	public override void _Ready()
 	{
 		navAgent = GetNode<NavigationAgent2D>("NavigationAgent2D");
 		sprite = GetNode<Sprite2D>("GooberSprite");
 		animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+		interactorArea = GetNode<InteractorArea>("InteractorArea");
 	}
 
 	public override void _Process(double delta)

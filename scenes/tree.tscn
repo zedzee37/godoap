@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dy2eo3di50cwb"]
+[gd_scene load_steps=4 format=3 uid="uid://dy2eo3di50cwb"]
 
 [ext_resource type="Texture2D" uid="uid://cyvy3yib4mrpu" path="res://sprites/tree.png" id="1_avsvi"]
+[ext_resource type="Script" uid="uid://dk7vvplod0ahn" path="res://scripts/components/InteractionArea.cs" id="2_vplca"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_avsvi"]
 
@@ -11,6 +12,7 @@ texture = ExtResource("1_avsvi")
 
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_mask = 0
+script = ExtResource("2_vplca")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("CircleShape2D_avsvi")
