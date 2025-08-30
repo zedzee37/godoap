@@ -38,5 +38,4 @@ public partial class Goob : Node2D, IStateProvider<GoobState>
 	{
 		return new GoobState();
 	}
-
 }
