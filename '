@@ -3,5 +3,5 @@ using Godot.Collections;
 
 public interface ISceneTracker<[MustBeVariant] T> where T : Node
 {
-	static abstract Array<T> GetInstances();
+	Array<T> GetInstances();
 }

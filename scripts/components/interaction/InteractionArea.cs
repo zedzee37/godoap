@@ -4,31 +4,33 @@ using Godot;
 [GlobalClass]
 public partial class InteractionArea : Area2D
 {
+	[Export] public bool CanInteract { get; set; }
+
     public delegate InteractionResult InteractedEventHandler();
-	private InteractedEventHandler? handler;
+	private Callback<InteractedEventHandler> interactedCallback = new Callback<InteractedEventHandler>();
 
 	public object? GetTarget()
 	{
-		if (handler == null)
+		if (interactedCallback.GetOwner() == null)
 		{
 			return null;
 		}
-
-		return handler.Target;
+		
+		return interactedCallback.GetOwner();
 	}
 
     public InteractionResult? Interact()
     {
-		if (handler == null)
+		if (interactedCallback.GetCallback() == null || !CanInteract)
 		{
 			return null;
 		}
 
-		return handler.Invoke();
+		return interactedCallback.GetCallback().Invoke();
     }
 
-	public void SetCallback(InteractedEventHandler handler)
+	public void SetCallback(object owner, InteractedEventHandler handler)
 	{
-		this.handler = handler;
+		interactedCallback.SetCallback(owner, handler);
 	}
 }

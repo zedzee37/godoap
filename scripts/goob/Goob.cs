@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 
 public partial class Goob : Node2D, IStateProvider<GoobState>
 {
@@ -20,7 +21,25 @@ public partial class Goob : Node2D, IStateProvider<GoobState>
 
 	public override void _Process(double delta)
 	{
-		navAgent.TargetPosition = GetGlobalMousePosition();
+		Array<Tree> trees = Tree.GetInstances();
+
+		float closestDistance = 100000000.0f;
+		Tree closestTree = null;
+		foreach (Tree tree in trees)
+		{
+			float distance = GlobalPosition.DistanceTo(tree.GlobalPosition);
+			
+			if (distance < closestDistance)
+			{
+				closestDistance = distance;
+				closestTree = tree;
+			}
+		}
+
+		if (closestTree != null)
+		{
+			navAgent.TargetPosition = closestTree.GlobalPosition;
+		}
 
 		if (Position.DistanceTo(navAgent.TargetPosition) > distanceThreshold)
 		{
@@ -33,6 +52,11 @@ public partial class Goob : Node2D, IStateProvider<GoobState>
 		else
 		{
 			animPlayer.Stop();
+		}
+
+		if (interactorArea.GetTarget() is Tree) 
+		{
+			interactorArea.Interact();
 		}
 	}
 

@@ -18,3 +18,36 @@ navigation_polygon = SubResource("NavigationPolygon_o5qli")
 
 [node name="Tree" parent="." instance=ExtResource("2_0wfyh")]
 position = Vector2(27, 27)
+
+[node name="Tree2" parent="." instance=ExtResource("2_0wfyh")]
+position = Vector2(45, 36)
+
+[node name="Tree3" parent="." instance=ExtResource("2_0wfyh")]
+position = Vector2(95, 31)
+
+[node name="Tree4" parent="." instance=ExtResource("2_0wfyh")]
+position = Vector2(50, 66)
+
+[node name="Tree5" parent="." instance=ExtResource("2_0wfyh")]
+position = Vector2(40, 107)
+
+[node name="Tree6" parent="." instance=ExtResource("2_0wfyh")]
+position = Vector2(42, 148)
+
+[node name="Tree7" parent="." instance=ExtResource("2_0wfyh")]
+position = Vector2(304, 123)
+
+[node name="Tree8" parent="." instance=ExtResource("2_0wfyh")]
+position = Vector2(252, 142)
+
+[node name="Tree9" parent="." instance=ExtResource("2_0wfyh")]
+position = Vector2(175, 153)
+
+[node name="Tree10" parent="." instance=ExtResource("2_0wfyh")]
+position = Vector2(239, 71)
+
+[node name="Tree11" parent="." instance=ExtResource("2_0wfyh")]
+position = Vector2(214, 26)
+
+[node name="Tree12" parent="." instance=ExtResource("2_0wfyh")]
+position = Vector2(214, 26)

@@ -13,8 +13,9 @@ script = ExtResource("1_viusy")
 texture = ExtResource("1_avsvi")
 
 [node name="InteractionArea" type="Area2D" parent="."]
-collision_mask = 0
+monitoring = false
 script = ExtResource("2_vplca")
+CanInteract = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("CircleShape2D_avsvi")
