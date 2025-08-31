@@ -1,7 +1,7 @@
 using Godot;
-using Godot.Collections;
+using System.Collections.Generic;
 
 public interface ISceneTracker<[MustBeVariant] T> where T : Node
 {
-	static abstract Array<T> GetInstances();
+	static abstract HashSet<T> GetInstances();
 }

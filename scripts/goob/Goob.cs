@@ -1,5 +1,5 @@
 using Godot;
-using Godot.Collections;
+using System.Collections.Generic;
 
 public partial class Goob : Node2D, IStateProvider<GoobState>
 {
@@ -21,7 +21,7 @@ public partial class Goob : Node2D, IStateProvider<GoobState>
 
 	public override void _Process(double delta)
 	{
-		Array<Tree> trees = Tree.GetInstances();
+		HashSet<Tree> trees = Tree.GetInstances();
 
 		float closestDistance = 100000000.0f;
 		Tree closestTree = null;

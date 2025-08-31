@@ -1,11 +1,11 @@
 using Godot;
-using Godot.Collections;
+using System.Collections.Generic;
 
 public partial class Tree : Node2D, ISceneTracker<Tree>
 {
 	private InteractionArea interactionArea;
 
-	private static Array<Tree> trees = new Array<Tree>();
+	private static HashSet<Tree> trees = new HashSet<Tree>();
 
 	public override void _EnterTree()
 	{
@@ -27,7 +27,7 @@ public partial class Tree : Node2D, ISceneTracker<Tree>
 				});
 	}
 
-	public static Array<Tree> GetInstances()
+	public static HashSet<Tree> GetInstances()
 	{
 		return trees;
 	}
